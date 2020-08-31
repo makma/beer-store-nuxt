@@ -11,7 +11,7 @@
     "lint": "npm run lint:js"
   },
   "dependencies": {
-    "nuxt": "^2.3.4",
+    "nuxt": "^2.14.0",
     "nuxt-buefy": "^0.3.31"
   },
   "devDependencies": {
