@@ -1,53 +1,56 @@
 <template>
   <section class="section">
-    <div class="columns is-mobile">
-      <card
-        title="Free"
-        icon="github"
-      >
-        Open source on <a href="https://github.com/buefy/buefy">
-          GitHub
-        </a>
-      </card>
-
-      <card
-        title="Responsive"
-        icon="cellphone-link"
-      >
-        <b class="has-text-grey">
-          Every
-        </b> component is responsive
-      </card>
-
-      <card
-        title="Modern"
-        icon="alert-decagram"
-      >
-        Built with <a href="https://vuejs.org/">
-          Vue.js
-        </a> and <a href="http://bulma.io/">
-          Bulma
-        </a>
-      </card>
-
-      <card
-        title="Lightweight"
-        icon="arrange-bring-to-front"
-      >
-        No other internal dependency
-      </card>
-    </div>
+    <h1 class="title">
+      Available Beer
+    </h1>
+    <BeerListing :beer-items="beerItems" />
   </section>
 </template>
 
 <script>
-import Card from '~/components/Card'
+import { DeliveryClient } from '@kentico/kontent-delivery'
+import BeerListing from '~/components/BeerListing'
 
 export default {
   name: 'HomePage',
 
   components: {
-    Card
+    BeerListing
+  },
+
+  data () {
+    return {
+      beerItems: []
+    }
+  },
+
+  mounted () {
+    this.getBeerItems()
+  },
+
+  methods: {
+    getBeerItems () {
+      const deliveryClient = new DeliveryClient({
+        projectId: 'a8bbf063-f609-01e7-4870-223458b9b69d'
+      })
+
+      deliveryClient
+        .items()
+        .type('beer')
+        .toPromise()
+        .then((response) => {
+          this.beerItems = response.items.map((item) => {
+            return {
+              id: item.system.id,
+              title: item.title.value,
+              description: item.description.value,
+              sourceUrl: item.source.value,
+              imageSrc: item.image.value[0].url,
+              imageCaption: item.image.value[0].description
+            }
+          })
+        })
+    }
   }
 }
 </script>

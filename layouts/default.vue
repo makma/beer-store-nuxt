@@ -10,11 +10,7 @@
           class="navbar-item"
           href="/"
         >
-          <img
-            src="~assets/buefy.png"
-            alt="Buefy"
-            height="28"
-          >
+          Beer Store
         </a>
 
         <div class="navbar-burger">
@@ -58,14 +54,9 @@ export default {
     return {
       items: [
         {
-          title: 'Home',
-          icon: 'home',
+          title: 'Beer Offer',
+          icon: 'beer',
           to: { name: 'index' }
-        },
-        {
-          title: 'Inspire',
-          icon: 'lightbulb',
-          to: { name: 'inspire' }
         }
       ]
     }
