@@ -22,7 +22,11 @@ export default {
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: 'https://cdn.snipcart.com/themes/v3.0.20/default/snipcart.css' }
+    ],
+    script: [
+      { src: 'https://cdn.snipcart.com/themes/v3.0.20/default/snipcart.js' }
     ]
   },
   /*

@@ -22,7 +22,15 @@
       </div>
     </div>
     <footer class="card-footer">
-      <button class="card-footer-item button is-primary">
+      <button
+        class="card-footer-item button is-primary snipcart-add-item"
+        :data-item-id="id"
+        :data-item-price="price"
+        :data-item-url="`${storeUrl}${this.$route.fullPath}`"
+        :data-item-description="description"
+        :data-item-image="`${imageSrc}?h=300`"
+        :data-item-name="title"
+      >
         Add to cart
       </button>
     </footer>
@@ -32,7 +40,12 @@
 <script>
 export default {
   name: 'BeerItem',
+
   props: {
+    id: {
+      type: String,
+      required: true
+    },
     title: {
       type: String,
       required: true
@@ -52,6 +65,16 @@ export default {
     sourceUrl: {
       type: String,
       required: true
+    },
+    price: {
+      type: Number,
+      required: true
+    }
+  },
+
+  data () {
+    return {
+      storeUrl: process.env.storeUrl
     }
   }
 }
@@ -60,6 +83,10 @@ export default {
 <style scoped>
 .content figure {
     margin: 0;
+}
+
+.content figure img {
+  height: 20rem;
 }
 
 .card-content {
@@ -71,6 +98,10 @@ export default {
    display: flex;
    flex-direction: column;
    height: 100%;
+}
+
+.card:hover {
+  box-shadow: 8px 5px 22px -11px rgba(0,0,0,1);
 }
 
 .cart-footer {

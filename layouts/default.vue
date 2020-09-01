@@ -1,5 +1,6 @@
 <template>
   <div>
+    <div id="snipcart" hidden data-api-key="YWRkYmExODUtNDlhYy00NmNlLTllY2YtY2ZiODU5MjczZGE3NjM3MzQ1NTc4MDEwOTE5ODcz" />
     <nav
       class="navbar header has-shadow is-primary"
       role="navigation"

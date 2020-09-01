@@ -35,7 +35,8 @@ export default {
             description: item.description.value,
             sourceUrl: item.source.value,
             imageSrc: item.image.value[0].url,
-            imageCaption: item.image.value[0].description
+            imageCaption: item.image.value[0].description,
+            price: item.price.value
           }
         })
         return { beerItems }

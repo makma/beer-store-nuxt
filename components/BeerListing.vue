@@ -1,7 +1,15 @@
 <template>
   <div class="columns is-multiline">
-    <div v-for="(beerItem) in beerItems" :key="beerItem.id" class="column is-one-third">
-      <BeerItem :title="beerItem.title" :description="beerItem.description" :image-src="beerItem.imageSrc" :image-caption="beerItem.imageCaption" :source-url="beerItem.sourceUrl" />
+    <div v-for="(beerItem) in beerItems" :key="beerItem.id" class="column is-half">
+      <BeerItem
+        :id="beerItem.id"
+        :title="beerItem.title"
+        :description="beerItem.description"
+        :image-src="beerItem.imageSrc"
+        :image-caption="beerItem.imageCaption"
+        :source-url="beerItem.sourceUrl"
+        :price="beerItem.price"
+      />
     </div>
   </div>
 </template>
