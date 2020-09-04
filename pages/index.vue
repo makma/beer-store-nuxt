@@ -11,6 +11,17 @@
 import { DeliveryClient } from '@kentico/kontent-delivery'
 import BeerListing from '~/components/BeerListing'
 
+function getPriceVariants (item) {
+  const rawPriceVariants = item.price_variants.value
+  const priceVariants = rawPriceVariants.map((rawVariant) => {
+    return {
+      label: rawVariant.label.value,
+      price: rawVariant.price.value
+    }
+  })
+  return priceVariants
+}
+
 export default {
   name: 'HomePage',
 
@@ -36,7 +47,8 @@ export default {
             sourceUrl: item.source.value,
             imageSrc: item.image.value[0].url,
             imageCaption: item.image.value[0].description,
-            price: item.price.value
+            price: item.price.value,
+            priceVariants: getPriceVariants(item)
           }
         })
         return { beerItems }

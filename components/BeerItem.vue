@@ -22,23 +22,48 @@
       </div>
     </div>
     <footer class="card-footer">
-      <button
-        class="card-footer-item button is-primary snipcart-add-item"
+      <b-dropdown aria-role="list">
+        <b-button slot="trigger" slot-scope="{ active }" size="is-medium" class="variants-button">
+          <span>{{ selectedVariant.label }}</span>
+          <b-icon :icon="active ? 'menu-up' : 'menu-down'" />
+        </b-button>
+        <b-dropdown-item v-for="(priceVariant) in priceVariants" :key="priceVariant.label" aria-role="listitem" @click="selectedVariant=priceVariant">
+          {{ priceVariant.label }}
+        </b-dropdown-item>
+      </b-dropdown>
+      <b-button
+        class="card-footer-item is-primary snipcart-add-item"
+        size="is-medium"
+        icon-left="cart-plus"
         :data-item-id="id"
-        :data-item-price="price"
+        data-item-price="0"
         :data-item-url="`${storeUrl}${this.$route.fullPath}`"
         :data-item-description="description"
         :data-item-image="`${imageSrc}?h=300`"
         :data-item-name="title"
+        data-item-custom1-name="Variant"
+        :data-item-custom1-options="formattedPriceOptions"
+        :data-item-custom1-value="selectedVariant.label"
       >
-        Add to cart
-      </button>
+        {{ `Add to cart for $${selectedVariant.price}` }}
+      </b-button>
     </footer>
   </div>
 </template>
 
 <script>
+function formatPriceOptions (priceVariants) {
+  let priceOptionsCustomData = ''
+  priceVariants.map((priceVariant) => {
+    priceOptionsCustomData = priceOptionsCustomData + `${priceVariant.label}[${priceVariant.price}]|`
+  })
+
+  // remove last |
+  return priceOptionsCustomData.slice(0, -1)
+}
+
 export default {
+
   name: 'BeerItem',
 
   props: {
@@ -69,12 +94,18 @@ export default {
     price: {
       type: Number,
       required: true
+    },
+    priceVariants: {
+      type: Array,
+      required: true
     }
   },
 
   data () {
     return {
-      storeUrl: process.env.storeUrl
+      storeUrl: process.env.storeUrl,
+      formattedPriceOptions: formatPriceOptions(this.priceVariants),
+      selectedVariant: this.priceVariants[0]
     }
   }
 }
@@ -104,8 +135,17 @@ export default {
   box-shadow: 8px 5px 22px -11px rgba(0,0,0,1);
 }
 
-.cart-footer {
-    margin-top: auto;
+.card-footer {
+    display: flex;
+    border-top: none;
+}
+
+.button {
+  margin: 1rem;
+}
+
+.variants-button {
+  width: 6rem;
 }
 
 </style>

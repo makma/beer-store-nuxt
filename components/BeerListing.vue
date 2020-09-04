@@ -9,6 +9,7 @@
         :image-caption="beerItem.imageCaption"
         :source-url="beerItem.sourceUrl"
         :price="beerItem.price"
+        :price-variants="beerItem.priceVariants"
       />
     </div>
   </div>
