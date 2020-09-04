@@ -103,7 +103,7 @@ export default {
 
   data () {
     return {
-      storeUrl: process.env.storeUrl,
+      storeUrl: process.env.NUXT_ENV_STORE_URL,
       formattedPriceOptions: formatPriceOptions(this.priceVariants),
       selectedVariant: this.priceVariants[0]
     }
