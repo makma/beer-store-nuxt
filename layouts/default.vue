@@ -64,3 +64,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.section {
+  padding: 3rem 1.5rem 5rem 1.5rem;
+}
+</style>

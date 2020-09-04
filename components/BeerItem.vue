@@ -45,7 +45,7 @@
         :data-item-custom1-options="formattedPriceOptions"
         :data-item-custom1-value="selectedVariant.label"
       >
-        {{ `Add to cart for $${selectedVariant.price}` }}
+        {{ `Buy $${selectedVariant.price}` }}
       </b-button>
     </footer>
   </div>
