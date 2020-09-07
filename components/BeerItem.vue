@@ -36,7 +36,7 @@
         size="is-medium"
         icon-left="cart-plus"
         :data-item-id="id"
-        data-item-price="0"
+        data-item-price="0.01"
         :data-item-url="`${storeUrl}${this.$route.fullPath}`"
         :data-item-description="description"
         :data-item-image="`${imageSrc}?h=300`"
@@ -55,7 +55,7 @@
 function formatPriceOptions (priceVariants) {
   let priceOptionsCustomData = ''
   priceVariants.map((priceVariant) => {
-    priceOptionsCustomData = priceOptionsCustomData + `${priceVariant.label}[${priceVariant.price}]|`
+    priceOptionsCustomData = priceOptionsCustomData + `${priceVariant.label}[${priceVariant.price - 0.01}]|`
   })
 
   // remove last |
