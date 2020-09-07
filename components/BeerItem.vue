@@ -55,7 +55,7 @@
 function formatPriceOptions (priceVariants) {
   let priceOptionsCustomData = ''
   priceVariants.map((priceVariant) => {
-    priceOptionsCustomData = priceOptionsCustomData + `${priceVariant.label}[${priceVariant.price - 0.01}]|`
+    priceOptionsCustomData = priceOptionsCustomData + `${priceVariant.label}[+${priceVariant.price - 0.01}]|`
   })
 
   // remove last |
@@ -89,10 +89,6 @@ export default {
     },
     sourceUrl: {
       type: String,
-      required: true
-    },
-    price: {
-      type: Number,
       required: true
     },
     priceVariants: {
